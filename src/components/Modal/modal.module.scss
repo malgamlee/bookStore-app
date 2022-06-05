@@ -1,0 +1,53 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 480px;
+  height: 800px;
+  //   background-color: rgba(0, 0, 0 / 50%);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(3px);
+  animation: show 300ms;
+
+  .contentWrapper {
+    box-sizing: border-box;
+    width: 300px;
+    height: 500px;
+    padding: 30px;
+    overflow: scroll;
+    background-color: colors.$WHITE;
+    border-radius: 10px;
+  }
+
+  h1 {
+    margin: 10px 0 20px;
+    font-size: 27px;
+    font-weight: 700;
+  }
+
+  .back {
+    width: 55px;
+    margin-bottom: 40px;
+    margin-left: calc(100% - 55px);
+    font-size: 13px;
+    text-align: right;
+    text-decoration: underline;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

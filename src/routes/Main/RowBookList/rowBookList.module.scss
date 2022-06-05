@@ -1,0 +1,38 @@
+@use '/src/styles/constants/colors';
+
+.bookList {
+  display: flex;
+  width: 28.125rem;
+  margin: 10px 0;
+  overflow: scroll;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+
+  .bookItem {
+    padding: 10px;
+
+    .image {
+      border: 1px solid whitesmoke;
+      border-radius: 5px;
+    }
+
+    .bookWrapper {
+      display: flex;
+      justify-content: space-between;
+      color: colors.$BLACK;
+
+      .number {
+        font-weight: 500;
+      }
+
+      .explain {
+        text-align: right;
+
+        .authors {
+          font-size: 12px;
+          font-weight: 200;
+        }
+      }
+    }
+  }
+}

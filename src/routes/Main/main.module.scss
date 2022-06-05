@@ -1,0 +1,93 @@
+@use '/src/styles/constants/colors';
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  padding: 0 12px 24px;
+
+  .mainWrapper {
+    width: 100%;
+  }
+
+  .mobileSearch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    // max-height: 500px;
+    padding: 10px;
+    background-color: colors.$WHITE;
+
+    .searchList {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 740px;
+      padding: 0 0 10px;
+      margin-top: 10px;
+      background-color: white;
+
+      .searchValueList {
+        .searchItem {
+          height: 40px;
+          padding: 0 10px;
+          line-height: 40px;
+
+          .bookTitle {
+            margin-right: 10px;
+            color: colors.$BLACK;
+          }
+
+          .bookAuthors {
+            font-size: 12px;
+            color: colors.$GRAYA;
+          }
+        }
+
+        :hover {
+          background-color: lightblue;
+        }
+      }
+
+      .recentSearchList {
+        p {
+          padding: 10px;
+          font-size: 12px;
+          color: colors.$GRAY6;
+        }
+
+        .noRecentSearch {
+          margin-top: 20px;
+          color: colors.$GRAYA;
+          text-align: center;
+        }
+
+        .recentSearch {
+          // padding: 10px;
+
+          .recentItem {
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+
+            .recentItemTitle {
+              color: colors.$BLACK;
+            }
+          }
+
+          .recentItem:hover {
+            background-color: lightblue;
+          }
+        }
+      }
+    }
+  }
+
+  .isShow {
+    display: block;
+  }
+}

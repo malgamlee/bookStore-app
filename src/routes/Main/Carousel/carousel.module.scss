@@ -1,0 +1,41 @@
+@use '/src/styles/constants/colors';
+
+.carousel {
+  margin-top: 20px;
+
+  .slider {
+    position: relative;
+    display: block;
+    width: 450px;
+    height: 230px;
+    margin: 0 auto;
+    overflow: auto;
+
+    .box1 {
+      width: 450px;
+      height: 200px;
+      margin: 0 auto;
+      font-size: 20px;
+      background-color: #30b0c7;
+      border-radius: 5px;
+
+      h1 {
+        font-weight: 700;
+      }
+    }
+
+    .box2 {
+      width: 100%;
+      height: 200px;
+      background-color: #32ade6;
+      border-radius: 5px;
+    }
+
+    .box3 {
+      width: 100%;
+      height: 200px;
+      background-color: #007aff;
+      border-radius: 5px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@use '/src/styles/constants/colors';
+
+.wish {
+  width: 100%;
+  height: 800px;
+  overflow: scroll;
+
+  .wishContent {
+    width: 100%;
+
+    .nobookList {
+      margin-top: 60px;
+      color: colors.$GRAYA;
+      text-align: center;
+
+      .emptyImage {
+        width: 150px;
+        margin-top: 50px;
+      }
+    }
+
+    .wishList {
+      margin-top: 60px;
+    }
+
+    .allBuyBtn {
+      width: 100%;
+      height: 50px;
+      margin: 5px 0 20px;
+      color: colors.$WHITE;
+      background-color: blue;
+      border-radius: 5px;
+    }
+  }
+}

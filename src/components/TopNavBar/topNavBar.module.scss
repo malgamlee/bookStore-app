@@ -1,0 +1,18 @@
+@use 'styles/constants/colors';
+
+.title {
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  width: 478px;
+  height: 60px;
+  line-height: 60px;
+  background-color: colors.$WHITE;
+  border-bottom: 1px solid black;
+
+  .icon {
+    height: 57px;
+    margin: 0 12px;
+    line-height: 60px;
+  }
+}

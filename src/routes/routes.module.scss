@@ -1,0 +1,15 @@
+@use '/src/styles/constants/colors';
+
+.appWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  .app {
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}

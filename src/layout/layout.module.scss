@@ -1,0 +1,15 @@
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 480px;
+  height: 800px;
+  min-height: 100vh;
+  overflow: scroll;
+  // border: 1px solid black;
+
+  .content {
+    flex-grow: 1;
+    border: 1px solid black;
+  }
+}

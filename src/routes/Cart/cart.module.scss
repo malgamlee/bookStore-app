@@ -1,0 +1,114 @@
+@use '/src/styles/constants/colors';
+
+.cart {
+  width: 100%;
+  height: 800px;
+  overflow: scroll;
+
+  .cartContent {
+    width: 100%;
+
+    .nobookList {
+      margin-top: 60px;
+      color: colors.$GRAYA;
+      text-align: center;
+
+      .emptyImage {
+        width: 150px;
+        margin-top: 50px;
+      }
+    }
+
+    .bookList {
+      margin-top: 60px;
+
+      .bookItem {
+        display: flex;
+        height: 100%;
+        padding: 15px 12px;
+        border-bottom: 1px solid lightgray;
+
+        .image {
+          width: 90px;
+        }
+
+        .content {
+          width: 100%;
+          margin-left: 12px;
+
+          .bookWrap {
+            height: 75%;
+
+            .bookTitle {
+              font-size: 18px;
+            }
+
+            .bookAuthor {
+              margin: 5px 0;
+              font-size: 14px;
+              font-weight: 200;
+            }
+          }
+
+          .buttonWrap {
+            float: right;
+            height: 25%;
+
+            .deleteBtn {
+              width: 60px;
+              height: 32px;
+              background-color: colors.$WHITE;
+              border: 1px solid lightgray;
+              border-radius: 5px;
+            }
+
+            .buyBtn {
+              width: 60px;
+              height: 32px;
+              margin-left: 10px;
+              color: colors.$WHITE;
+              background: blue;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    .allPrice {
+      width: 100%;
+      padding: 0 12px;
+      background-color: whitesmoke;
+
+      .priceList {
+        padding: 20px 0;
+
+        .priceItem {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+
+          dd {
+            font-weight: 500;
+          }
+        }
+
+        .priceItem:last-child {
+          padding-top: 20px;
+          margin: 10px 0;
+          font-size: 20px;
+          border-top: 1px solid black;
+        }
+      }
+    }
+
+    .allBuyBtn {
+      width: 100%;
+      height: 50px;
+      margin: 5px 0 20px;
+      color: colors.$WHITE;
+      background-color: blue;
+      border-radius: 5px;
+    }
+  }
+}

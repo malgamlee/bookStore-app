@@ -1,0 +1,53 @@
+@use '/src/styles/constants/colors';
+
+.item {
+  display: flex;
+  height: 100%;
+  padding: 15px 12px;
+  border-bottom: 1px solid lightgray;
+
+  .image {
+    width: 90px;
+  }
+
+  .content {
+    width: 100%;
+    margin-left: 12px;
+
+    .bookWrap {
+      height: 75%;
+
+      .bookTitle {
+        font-size: 18px;
+      }
+
+      .bookAuthor {
+        margin: 5px 0;
+        font-size: 14px;
+        font-weight: 200;
+      }
+    }
+
+    .buttonWrap {
+      float: right;
+      height: 25%;
+
+      .deleteBtn {
+        width: 60px;
+        height: 32px;
+        background-color: colors.$WHITE;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+      }
+
+      .buyBtn {
+        width: 60px;
+        height: 32px;
+        margin-left: 10px;
+        color: colors.$WHITE;
+        background: blue;
+        border-radius: 5px;
+      }
+    }
+  }
+}

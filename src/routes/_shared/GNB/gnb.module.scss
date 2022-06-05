@@ -1,0 +1,39 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.gnb {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  line-height: 60px;
+  // border-bottom: 1px solid black;
+
+  .button {
+    position: relative;
+    margin-left: 10px;
+
+    .svg {
+      height: 60px;
+      padding: 15px 5px;
+      line-height: 60px;
+      color: colors.$BLACK;
+    }
+
+    :hover {
+      color: colors.$GRAYA;
+    }
+
+    .countCartStore {
+      position: absolute;
+      top: 5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      font-size: 10px;
+      line-height: 23px;
+      background-color: red;
+      border-radius: 10px;
+    }
+  }
+}

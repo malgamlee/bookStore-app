@@ -1,6 +1,5 @@
 import styles from './cart.module.scss'
 import store from 'store'
-import Modal from 'components/Modal'
 import TopNavBar from 'components/TopNavBar'
 import { useRecoilValue } from 'hooks/state'
 import { cartStoreState } from 'states/storeState'
@@ -66,8 +65,6 @@ const Cart = () => {
           </div>
         </div>
       )}
-
-      {/* <Modal /> */}
     </div>
   )
 }

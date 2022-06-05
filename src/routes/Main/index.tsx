@@ -5,42 +5,50 @@ import { bestSeller } from 'data/bestSeller'
 import SearchForm from 'components/SearchForm'
 import GNB from 'routes/_shared/GNB'
 import cx from 'classnames'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getSearchListApi } from 'services/bookSearchApi'
 import { useQuery } from 'react-query'
 import { useRecoilValue } from 'recoil'
-import { inputValue } from 'states/inputValue'
+import { inputValue, searchValue } from 'states/inputSearchValue'
 import { Link } from 'react-router-dom'
 import store from 'store'
 import { SearchStructure } from 'types/searchStructure'
+import { useRecoil } from 'hooks/state'
 
 const Main = () => {
-  const [isSearchShow, setIsSearchShow] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
+  const [isSearchListShow, setIsSearchListShow] = useState(false)
+  const search = useRecoilValue(searchValue)
   const input = useRecoilValue(inputValue)
 
+  const [, setSearch] = useRecoil(searchValue)
+  const [, setInput] = useRecoil(inputValue)
+
+  useEffect(() => {
+    setSearch('')
+    setInput('')
+  }, [setInput, setSearch])
   const searchStore = store.get('searchStore')
 
   const { data } = useQuery(
-    ['getSearchListApi', searchValue, input],
-    () => getSearchListApi(searchValue).then((res) => res.data),
+    ['getSearchListApi', search, input],
+    () => getSearchListApi(search).then((res) => res.data),
     {
-      enabled: !!searchValue,
+      enabled: !!search,
     }
   )
   return (
     <div className={styles.main}>
       <GNB />
       <div className={styles.mainWrapper}>
-        <SearchForm popup={false} setIsSearchShow={setIsSearchShow} setSearchValue={setSearchValue} />
+        <SearchForm isPopup={false} setIsSearchListShow={setIsSearchListShow} />
         <div>
           <Carousel />
         </div>
         <div>베스트셀러</div>
         <RowBookList bookList={bestSeller} />
       </div>
-      <div className={cx(styles.mobileSearch, { [styles.isShow]: isSearchShow })}>
-        <SearchForm popup setIsSearchShow={setIsSearchShow} setSearchValue={setSearchValue} />
+      <div className={cx(styles.mobileSearch, { [styles.isShow]: isSearchListShow })}>
+        <SearchForm isPopup setIsSearchListShow={setIsSearchListShow} />
         <div className={cx(styles.searchList, styles.isExist)}>
           {input && data ? (
             <ul className={styles.searchValueList}>
@@ -54,7 +62,6 @@ const Main = () => {
               ))}
             </ul>
           ) : (
-            // 수정필요
             <div className={styles.recentSearchList}>
               <p>최근 검색어 목록</p>
               {searchStore.length > 0 ? (

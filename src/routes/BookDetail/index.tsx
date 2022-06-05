@@ -11,6 +11,7 @@ import { HeartIcon, CartIcon } from 'assets/svgs'
 import cx from 'classnames'
 import { SearchStructure } from 'types/searchStructure'
 import thousandReExp from 'utils/thousandReExp'
+import { inputValue, searchValue } from 'states/inputSearchValue'
 
 const BookDetail = () => {
   const { paramValue } = useParams()
@@ -18,6 +19,13 @@ const BookDetail = () => {
   const [isInLike, setIsInLike] = useState(false)
   const [cartStore, setCartStore] = useRecoil(cartStoreState)
   const [likeStore, setLikeStore] = useRecoil(likeStoreState)
+  const [, setSearch] = useRecoil(searchValue)
+  const [, setInput] = useRecoil(inputValue)
+
+  useEffect(() => {
+    setSearch('')
+    setInput('')
+  }, [setInput, setSearch])
 
   const { data, isLoading } = useQuery(
     ['getSearchListApi', paramValue],

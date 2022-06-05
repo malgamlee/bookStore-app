@@ -6,29 +6,29 @@ import store from 'store'
 
 import cx from 'classnames'
 
-import { inputValue } from 'states/inputValue'
+import { inputValue, searchValue } from 'states/inputSearchValue'
 import { useRecoil } from 'hooks/state'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  popup: boolean
-  setIsSearchShow: Dispatch<SetStateAction<boolean>>
-  setSearchValue: Dispatch<SetStateAction<string>>
+  isPopup: boolean
+  setIsSearchListShow: Dispatch<SetStateAction<boolean>>
 }
 
-const SearchForm = ({ popup, setIsSearchShow, setSearchValue }: Props) => {
+const SearchForm = ({ isPopup, setIsSearchListShow }: Props) => {
   const navigate = useNavigate()
   const [input, setInput] = useRecoil(inputValue)
+  const [, setSearch] = useRecoil(searchValue)
   const debounceSearch = useMemo(
     () =>
       debounce((value) => {
-        setSearchValue(value)
-      }, 2000),
-    [setSearchValue]
+        setSearch(value)
+      }, 1000),
+    [setSearch]
   )
   const handleInputClick = () => {
-    if (popup) return
-    setIsSearchShow((prev) => !prev)
+    if (isPopup) return
+    setIsSearchListShow((prev) => !prev)
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ const SearchForm = ({ popup, setIsSearchShow, setSearchValue }: Props) => {
   }
 
   const handleCancelClick = () => {
-    setIsSearchShow((prev) => !prev)
+    setIsSearchListShow((prev) => !prev)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -53,7 +53,7 @@ const SearchForm = ({ popup, setIsSearchShow, setSearchValue }: Props) => {
 
   const handleRemoveInputClick = () => {
     setInput('')
-    setSearchValue('')
+    setSearch('')
   }
 
   return (
@@ -64,13 +64,17 @@ const SearchForm = ({ popup, setIsSearchShow, setSearchValue }: Props) => {
             <SearchIcon />
           </div>
           <input className={styles.input} onClick={handleInputClick} onChange={handleChange} value={input} />
-          {popup && (
+          {isPopup && (
             <button type='button' onClick={handleRemoveInputClick}>
               <RemoveIcon className={styles.removeIcon} />
             </button>
           )}
         </form>
-        <button className={cx(styles.cancelBtn, { [styles.isExist]: popup })} type='button' onClick={handleCancelClick}>
+        <button
+          className={cx(styles.cancelBtn, { [styles.isExist]: isPopup })}
+          type='button'
+          onClick={handleCancelClick}
+        >
           취소
         </button>
       </div>

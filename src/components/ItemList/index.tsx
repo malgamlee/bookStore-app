@@ -5,6 +5,7 @@ import { cartStoreState, likeStoreState } from 'states/storeState'
 import store from 'store'
 import { SearchStructure } from 'types/searchStructure'
 import thousandReExp from 'utils/thousandReExp'
+import { inputValue, searchValue } from 'states/inputSearchValue'
 
 interface Props {
   item: SearchStructure
@@ -14,6 +15,8 @@ interface Props {
 const ItemList = ({ item, type }: Props) => {
   const [cartStoreData, setCartStoreData] = useRecoil(cartStoreState)
   const [likeStoreData, setLikeStoreData] = useRecoil(likeStoreState)
+  const [, setInput] = useRecoil(inputValue)
+  const [, setSearch] = useRecoil(searchValue)
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget.dataset
     const { className } = e.currentTarget
@@ -31,6 +34,8 @@ const ItemList = ({ item, type }: Props) => {
           likeStoreData.filter((data: SearchStructure) => data.isbn !== value)
         )
         setLikeStoreData(store.get(type))
+        setInput('')
+        setSearch('')
       }
     }
   }

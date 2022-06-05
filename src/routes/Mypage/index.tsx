@@ -2,12 +2,12 @@ import styles from './myPage.module.scss'
 import TopNavBar from 'components/TopNavBar'
 import { PersonIcon, HeartIcon, CartIcon, TruckIcon, SettingIcon } from 'assets/svgs'
 import { MouseEvent } from 'react'
-import { useRecoil } from 'hooks'
 import { userInfoState } from 'states/userInfo'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 const User = () => {
-  const [userInfo, setUserInfo] = useRecoil(userInfoState)
+  const userInfo = useRecoilValue(userInfoState)
   const navigate = useNavigate()
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {

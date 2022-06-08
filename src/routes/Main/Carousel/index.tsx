@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 const Carousel = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -18,11 +18,9 @@ const Carousel = () => {
       <div>
         <div className={styles.slider}>
           <Slider {...settings}>
-            <div className={styles.box1}>
-              <h1>책</h1> 잘 읽는 방법
-            </div>
-            <div className={styles.box2}>개발 잘 하는 방법, 아시나요?</div>
-            <div className={styles.box3}>Wanted Preonboading 성공적인 마무리 </div>
+            <div className={styles.box1} />
+            <div className={styles.box2} />
+            <div className={styles.box3} />
           </Slider>
         </div>
       </div>

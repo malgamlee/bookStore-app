@@ -1,18 +1,26 @@
-@use 'styles/constants/colors';
+@use '/src/styles/constants/colors';
 
 .title {
   position: fixed;
   z-index: 10;
   display: flex;
-  width: 478px;
-  height: 60px;
-  line-height: 60px;
+  width: 358px;
+  height: 50px;
+  font-size: 14px;
+  line-height: 50px;
   background-color: colors.$WHITE;
-  border-bottom: 1px solid black;
+  // border-bottom: 1px solid black;
 
-  .icon {
-    height: 57px;
-    margin: 0 12px;
-    line-height: 60px;
+  .backBtn {
+    height: 40px;
+    line-height: 40px;
+
+    .icon {
+      height: 50px;
+      padding: 15px 5px;
+      margin: 0 5px 0 12px;
+      line-height: 50px;
+      color: colors.$BLACK;
+    }
   }
 }

@@ -15,7 +15,7 @@ const TopNavBar = ({ title }: Props) => {
   return (
     <div className={styles.cartContent}>
       <div className={styles.title}>
-        <button type='button' onClick={onBackClick}>
+        <button type='button' onClick={onBackClick} className={styles.backBtn}>
           <LeftIcon className={styles.icon} />
         </button>
         <p>{title}</p>

@@ -17,7 +17,7 @@ const GNB = () => {
   }
   return (
     <nav className={styles.gnb}>
-      <button onClick={onLogoClick} type='button' data-value='logo'>
+      <button onClick={onLogoClick} type='button' data-value='logo' className={styles.title}>
         RADI BOOKS
       </button>
       <div>

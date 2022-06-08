@@ -1,0 +1,29 @@
+@use '/src/styles/constants/colors';
+
+.bookList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  .item {
+    margin-bottom: 20px;
+
+    .bookImg {
+      width: 100px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+    }
+
+    .bookTitle {
+      display: block;
+      width: 100px;
+      overflow: hidden;
+      font-size: 12px;
+      line-height: 25px;
+      color: colors.$BLACK;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

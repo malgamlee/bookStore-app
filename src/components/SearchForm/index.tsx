@@ -60,12 +60,10 @@ const SearchForm = ({ isPopup, setIsSearchListShow }: Props) => {
     <div className={styles.searchForm}>
       <div className={styles.formWrapper}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.searchIcon}>
-            <SearchIcon />
-          </div>
+          <SearchIcon className={styles.icon} />
           <input className={styles.input} onClick={handleInputClick} onChange={handleChange} value={input} />
           {isPopup && (
-            <button type='button' onClick={handleRemoveInputClick}>
+            <button type='button' onClick={handleRemoveInputClick} className={styles.removeBtn}>
               <RemoveIcon className={styles.removeIcon} />
             </button>
           )}

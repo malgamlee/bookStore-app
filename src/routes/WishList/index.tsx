@@ -1,14 +1,14 @@
 import styles from './wishList.module.scss'
 import TopNavBar from 'components/TopNavBar'
-import { HeartIcon } from 'assets/svgs'
-import ItemList from 'components/ItemList'
 import { useRecoilValue } from 'hooks/state'
 import { likeStoreState } from 'states/storeState'
 import { SearchStructure } from 'types/searchStructure'
+import ItemList from 'components/ItemList'
 import SearchForm from 'components/SearchForm'
 import { useEffect, useState } from 'react'
 import { fuzzyFilter } from 'utils/fuzzystring'
 import { searchValue } from 'states/inputSearchValue'
+import NoDataPage from 'components/NoDataPage'
 
 const WishList = () => {
   const likeStoreData = useRecoilValue(likeStoreState)
@@ -36,14 +36,7 @@ const WishList = () => {
           </ul>
         </div>
       ) : (
-        <div className={styles.wishContent}>
-          <div className={styles.nobookList}>
-            <div>
-              <HeartIcon className={styles.emptyImage} />
-            </div>
-            좋아요를 누른 항목이 없습니다.
-          </div>
-        </div>
+        <NoDataPage type='like' noDataInfo='좋아요를 누른 항목이 없습니다.' />
       )}
     </div>
   )

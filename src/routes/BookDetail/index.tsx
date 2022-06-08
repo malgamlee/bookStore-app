@@ -1,17 +1,21 @@
+import { MouseEvent, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import GNB from 'routes/_shared/GNB'
-import { getSearchListApi } from 'services/bookSearchApi'
-import styles from './bookDetail.module.scss'
-import { MouseEvent, useEffect, useState } from 'react'
-import store from 'store'
 import { useRecoil } from 'hooks/state'
-import { cartStoreState, likeStoreState } from 'states/storeState'
-import { HeartIcon, CartIcon } from 'assets/svgs'
-import cx from 'classnames'
+import store from 'store'
+import styles from './bookDetail.module.scss'
+
+import { getSearchListApi } from 'services/bookSearchApi'
 import { SearchStructure } from 'types/searchStructure'
 import thousandReExp from 'utils/thousandReExp'
+import { cartStoreState, likeStoreState } from 'states/storeState'
 import { inputValue, searchValue } from 'states/inputSearchValue'
+
+import TopNavBar from 'components/TopNavBar'
+import NoDataPage from 'components/NoDataPage'
+
+import ButtonWrap from './ButtonWrap'
+import BookList from 'components/BookList'
 
 const BookDetail = () => {
   const { paramValue } = useParams()
@@ -66,62 +70,50 @@ const BookDetail = () => {
   }
 
   useEffect(() => {
-    if (data) {
-      const checkCart = cartStore.filter((item) => item.isbn === data.documents[0].isbn)
-      if (checkCart.length > 0) setIsInCart(true)
-      const checkLike = likeStore.filter((item: { isbn: string }) => item.isbn === data.documents[0].isbn)
-      if (checkLike.length > 0) setIsInLike(true)
-    }
-  }, [cartStore, data, likeStore])
+    if (data === undefined) return
+    const checkLike = likeStore.filter((item: { isbn: string }) => item.isbn === data.documents[0].isbn)
+    if (checkLike.length > 0) setIsInLike(true)
+    else setIsInLike(false)
+  }, [data, likeStore])
+
+  useEffect(() => {
+    if (data === undefined) return
+    const checkCart = cartStore.filter((item) => item.isbn === data.documents[0].isbn)
+    if (checkCart.length > 0) setIsInCart(true)
+    else setIsInCart(false)
+  }, [cartStore, data])
 
   return (
     <div className={styles.bookDetail}>
-      <GNB />
-      {!isLoading && data ? (
-        <div>
-          <div className={styles.detailWrapper}>
+      <TopNavBar title='상세정보' />
+      {data && data.documents.length > 0 ? (
+        <div className={styles.detailContent}>
+          <div className={styles.bookImage}>
             <img className={styles.bookImg} src={data.documents[0].thumbnail} alt={`${data.documents[0].title}_img`} />
-            <div className={styles.content}>
-              <div className={styles.book}>
-                <div className={styles.bookTitle}>{data.documents[0].title}</div>
-                <div className={styles.bookAuthor}>
-                  {data.documents[0].authors} 저 | {data.documents[0].publisher} 출판 (
-                  {data.documents[0].datetime.split('T')[0].replaceAll('-', '. ')})
-                </div>
-                <div className={styles.bookPrice}>판매가 {thousandReExp(data.documents[0].sale_price)}</div>
-              </div>
-              <div className={styles.buttonWrapper}>
-                <button
-                  type='button'
-                  onClick={handleClickBtn}
-                  data-value='likeStore'
-                  className={cx(styles.smallBtn, { [styles.isInLike]: isInLike })}
-                >
-                  <HeartIcon />
-                </button>
-                <button
-                  type='button'
-                  onClick={handleClickBtn}
-                  data-value='cartStore'
-                  className={cx(styles.smallBtn, { [styles.isInCart]: isInCart })}
-                >
-                  <CartIcon />
-                </button>
-                <button type='button' onClick={handleClickBtn} data-value='buyStore' className={styles.bigBtn}>
-                  구매하기
-                </button>
-              </div>
-            </div>
           </div>
-          <div className={styles.bookExplain}>
-            <p>작품 소개</p>
+          <div className={styles.bookContents}>
+            <div className={styles.bookTitle}>{data.documents[0].title}</div>
+            <div className={styles.bookAuthor}>
+              {data.documents[0].authors} 저 | {data.documents[0].publisher} 출판 (
+              {data.documents[0].datetime.split('T')[0].replaceAll('-', '. ')})
+            </div>
             <div className={styles.explain}>
               {data.documents[0].contents} ...<a href={data.documents[0].url}>더보기</a>
             </div>
+            <div className={styles.otherTitle}>저자의 다른 도서</div>
+            <BookList author={data.documents[0].authors} title={data.documents[0].title} />
+          </div>
+          <div className={styles.buttonWrap}>
+            <ButtonWrap
+              handleClickBtn={handleClickBtn}
+              isInLike={isInLike}
+              isInCart={isInCart}
+              price={thousandReExp(data.documents[0].sale_price)}
+            />
           </div>
         </div>
       ) : (
-        <div>sdfds</div>
+        <NoDataPage type='announcement' noDataInfo={`검색하신 '${paramValue}'에 대한 정보가 없습니다.`} />
       )}
     </div>
   )

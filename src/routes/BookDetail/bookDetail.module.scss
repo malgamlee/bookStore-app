@@ -2,87 +2,66 @@
 
 .bookDetail {
   width: 100%;
-  height: 800px;
-  padding: 0 12px 24px;
+  overflow: scroll;
 
-  .detailWrapper {
-    display: flex;
+  .detailContent {
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    background-color: whitesmoke;
 
-    .bookImg {
-      height: 180px;
-      border: 1px solid lightgray;
+    .bookImage {
+      display: flex;
+      justify-content: center;
+
+      .bookImg {
+        width: 100px;
+        margin: 20%;
+        border: 1px solid whitesmoke;
+        box-shadow: rgba(50, 50, 93, 25%) 0 2px 5px -1px, rgba(0, 0, 0, 30%) 0 1px 3px -1px;
+      }
     }
 
-    .content {
+    .bookContents {
       width: 100%;
-      margin-left: 20px;
-      font-size: 14px;
-      font-weight: 200;
+      height: 100%;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      background-color: white;
+      border-radius: 40px 0 0;
 
-      .book {
-        height: 140px;
-
-        .bookTitle {
-          font-size: 22px;
-          font-weight: 500;
-        }
-
-        .bookAuthor {
-          line-height: 35px;
-        }
+      .bookTitle {
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: 500;
       }
 
-      .buttonWrapper {
-        display: flex;
-        justify-content: flex-end;
-        height: 40px;
+      .bookAuthor {
+        margin-bottom: 15px;
+        font-size: 12px;
+        color: colors.$GRAY6;
+      }
 
-        .smallBtn {
-          width: 40px;
-          height: 40px;
-          padding: 7px;
-          margin-right: 10px;
-          border: 1px solid lightgray;
-          border-radius: 5px;
-        }
+      .explain {
+        padding: 15px 0 30px;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 18px;
+        border-top: 1px solid lightgray;
+      }
 
-        .smallBtn:hover {
-          color: colors.$GRAYA;
-        }
-
-        .isInCart,
-        .isInLike {
-          color: colors.$RED;
-        }
-
-        .bigBtn {
-          width: 80px;
-          height: 40px;
-          color: colors.$WHITE;
-          background-color: blue;
-          border-radius: 5px;
-        }
+      .otherTitle {
+        margin-bottom: 15px;
+        font-size: 14px;
       }
     }
-  }
 
-  .bookExplain {
-    margin: 20px 0;
-
-    p {
-      font-size: 18px;
-      line-height: 30px;
-      border-bottom: 2px solid lightgray;
-    }
-
-    .explain {
-      margin-top: 10px;
-      line-height: 20px;
-
-      a {
-        font-weight: 700;
-        color: colors.$BLACK;
-      }
+    .buttonWrap {
+      position: absolute;
+      right: 0;
+      bottom: 5px;
+      display: flex;
+      justify-content: center;
     }
   }
 }

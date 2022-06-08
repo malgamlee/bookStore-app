@@ -1,0 +1,53 @@
+@use '/src/styles/constants/colors';
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  height: 60px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 15%) 0 5px 15px;
+
+  .price {
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .buttons {
+    display: flex;
+
+    .smallBtn {
+      width: 40px;
+      height: 40px;
+      padding: 7px;
+      margin-right: 10px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    .smallBtn:hover {
+      color: colors.$GRAYA;
+    }
+
+    .isInCart,
+    .isInLike {
+      color: colors.$RED;
+    }
+
+    .bigBtn {
+      width: 120px;
+      height: 40px;
+      color: colors.$WHITE;
+      background-color: blue;
+      border-radius: 5px;
+    }
+  }
+}

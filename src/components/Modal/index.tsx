@@ -1,5 +1,5 @@
-import { PropsWithChildren, useRef } from 'react'
-import type { Dispatch, SetStateAction, MouseEvent } from 'react'
+import { useRef } from 'react'
+import type { MouseEvent } from 'react'
 import styles from './modal.module.scss'
 
 const Modal = () => {
@@ -18,7 +18,6 @@ const Modal = () => {
   return (
     <div className={styles.wrapper} ref={outerRef} onClick={handleClickOuterArea} role='button' tabIndex={-1}>
       <article className={styles.contentWrapper}>
-        <h1>건강 검진 결과</h1>
         <button type='button' className={styles.back} aria-label='뒤로 가기' onClick={handleClickClose}>
           뒤로 가기
         </button>

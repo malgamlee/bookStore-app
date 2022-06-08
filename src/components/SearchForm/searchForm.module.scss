@@ -19,18 +19,20 @@
         width: 90%;
         height: 30px;
         padding-left: 10px;
-        line-height: 30px;
         background-color: colors.$GRAYE;
       }
 
-      .removeIcon {
-        height: 30px;
+      .icon {
+        width: 20px;
+        color: colors.$GRAY6;
       }
 
-      .searchIcon {
-        width: 30px;
-        height: 30px;
-        line-height: 35px;
+      .removeBtn {
+        margin-top: 3px;
+
+        .removeIcon {
+          width: 20px;
+        }
       }
     }
 

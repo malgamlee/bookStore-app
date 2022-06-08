@@ -3,10 +3,10 @@ import store from 'store'
 import TopNavBar from 'components/TopNavBar'
 import { useRecoilValue } from 'hooks/state'
 import { cartStoreState } from 'states/storeState'
-import { CartIcon } from 'assets/svgs'
 import ItemList from 'components/ItemList'
 import thousandReExp from 'utils/thousandReExp'
 import { SearchStructure } from 'types/searchStructure'
+import NoDataPage from 'components/NoDataPage'
 
 const Cart = () => {
   const storeData = store.get('cartStore')
@@ -56,14 +56,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.cartContent}>
-          <div className={styles.nobookList}>
-            <div>
-              <CartIcon className={styles.emptyImage} />
-            </div>
-            장바구니가 비었습니다.
-          </div>
-        </div>
+        <NoDataPage type='cart' noDataInfo='장바구니가 비었습니다.' />
       )}
     </div>
   )

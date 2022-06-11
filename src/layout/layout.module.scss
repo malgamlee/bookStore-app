@@ -1,9 +1,10 @@
+@use '/src/styles/constants/colors';
+
 .layout {
   width: 360px;
   height: 100vh;
-  // height: 800px;
   overflow: scroll;
-  border: 1px solid lightgray;
+  border: 1px solid colors.$GRAYE;
 
   .content {
     flex-grow: 1;

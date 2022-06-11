@@ -6,9 +6,14 @@ import BookDetail from './BookDetail'
 import Cart from './Cart'
 import User from './Mypage'
 import WishList from './WishList'
+import SearchResult from './SearchResult'
 import store from 'store'
+import { themeState } from 'states/system'
+import { useRecoil } from 'hooks/state'
+import { useEffect } from 'react'
 
 const App = () => {
+  const [theme] = useRecoil(themeState)
   if (!store.get('searchStore')) {
     store.set('searchStore', [])
   }
@@ -18,6 +23,11 @@ const App = () => {
   if (!store.get('cartStore')) {
     store.set('cartStore', [])
   }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('color-theme', theme)
+  }, [theme])
+
   return (
     <div className={styles.appWrapper}>
       <div className={styles.app}>
@@ -28,6 +38,7 @@ const App = () => {
             <Route path='user' element={<User />} />
             <Route path='wishList' element={<WishList />} />
             <Route path='bookdetail/:paramValue' element={<BookDetail />} />
+            <Route path='searchresult/:paramValue' element={<SearchResult />} />
           </Route>
           <Route path='*' element={<div>Not Found</div>} />
         </Routes>

@@ -1,19 +1,28 @@
 import styles from './myPage.module.scss'
 import TopNavBar from 'components/TopNavBar'
-import { PersonIcon, HeartIcon, CartIcon, TruckIcon, SettingIcon } from 'assets/svgs'
-import { MouseEvent } from 'react'
+import { PersonIcon } from 'assets/svgs'
 import { userInfoState } from 'states/userInfo'
-import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+import { MouseEvent } from 'react'
+import store from 'store'
+
+import Toggle from './Toggle'
+import { cartStoreState, likeStoreState } from 'states/storeState'
+import { useRecoil } from 'hooks/state'
 
 const User = () => {
   const userInfo = useRecoilValue(userInfoState)
-  const navigate = useNavigate()
+  const [, setLikeStore] = useRecoil(likeStoreState)
+  const [, setCartStore] = useRecoil(cartStoreState)
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const clickDeleteBtn = (e: MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget.dataset
-    navigate(`/${value}`)
+    if (value === undefined) return
+    store.set(value, [])
+    if (value === 'cartStore') setCartStore([])
+    else if (value === 'likeStore') setLikeStore([])
   }
+
   return (
     <div className={styles.myPage}>
       <TopNavBar title='마이페이지' />
@@ -27,24 +36,36 @@ const User = () => {
           <div className={styles.userName}>
             {userInfo.userName} ({userInfo.userId})
           </div>
-          <div className={styles.buttonWrapper}>
-            <button type='button' className={styles.buttons} onClick={handleClick} data-value='wishList'>
-              <HeartIcon />
-              <div>좋아요</div>
-            </button>
-            <button type='button' className={styles.buttons} onClick={handleClick} data-value='cart'>
-              <CartIcon />
-              <div>장바구니</div>
-            </button>
-            <button type='button' className={styles.buttons} onClick={handleClick} data-value='order'>
-              <TruckIcon />
-              <div>주문조회</div>
-            </button>
-            <button type='button' className={styles.buttons} onClick={handleClick} data-value='setting'>
-              <SettingIcon />
-              <div>설정</div>
-            </button>
-          </div>
+          <dl>
+            <dt>장바구니</dt>
+            <dd>
+              <button type='button' className={styles.allDelete} data-value='cartStore' onClick={clickDeleteBtn}>
+                전체 삭제
+              </button>
+            </dd>
+          </dl>
+          <dl>
+            <dt>좋아요</dt>
+            <dd>
+              <button type='button' className={styles.allDelete} data-value='likeStore' onClick={clickDeleteBtn}>
+                전체 삭제
+              </button>
+            </dd>
+          </dl>
+          <dl>
+            <dt>검색기록</dt>
+            <dd>
+              <button type='button' className={styles.allDelete} data-value='searchStore' onClick={clickDeleteBtn}>
+                전체 삭제
+              </button>
+            </dd>
+          </dl>
+          <dl>
+            <dt>다크모드</dt>
+            <dd>
+              <Toggle />
+            </dd>
+          </dl>
         </div>
       </div>
     </div>

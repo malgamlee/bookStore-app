@@ -2,18 +2,22 @@ import { HeartIcon, CartIcon } from 'assets/svgs'
 import styles from './buttonWrap.module.scss'
 import cx from 'classnames'
 import { MouseEventHandler } from 'react'
+import ThousandReExp from 'utils/thousandReExp'
 
 interface Props {
   handleClickBtn: MouseEventHandler<HTMLButtonElement>
   isInLike: boolean
   isInCart: boolean
-  price: string
+  price: number
+  salePrice: number
 }
 
-const ButtonWrap = ({ handleClickBtn, isInLike, isInCart, price }: Props) => {
+const ButtonWrap = ({ handleClickBtn, isInLike, isInCart, price, salePrice }: Props) => {
   return (
     <div className={styles.buttonWrapper}>
-      <div className={styles.price}>{price} 원</div>
+      <div className={cx(styles.price, { [styles.soldout]: salePrice < 0 })}>
+        {salePrice === -1 ? `${ThousandReExp(price)} 원` : `${ThousandReExp(salePrice)} 원`}
+      </div>
       <div className={styles.buttons}>
         <button
           type='button'
@@ -31,8 +35,13 @@ const ButtonWrap = ({ handleClickBtn, isInLike, isInCart, price }: Props) => {
         >
           <CartIcon className={styles.icon} />
         </button>
-        <button type='button' className={styles.bigBtn} onClick={handleClickBtn} data-value='buyStore'>
-          구매하기
+        <button
+          type='button'
+          className={cx(styles.bigBtn, { [styles.soldout]: salePrice < 0 })}
+          onClick={handleClickBtn}
+          data-value='buyStore'
+        >
+          {salePrice === -1 ? '품절' : '구매하기'}
         </button>
       </div>
     </div>

@@ -14,7 +14,7 @@
     .allPrice {
       width: 100%;
       padding: 0 12px;
-      background-color: whitesmoke;
+      background-color: colors.$GRAYE;
 
       .priceList {
         padding: 20px 0;
@@ -34,7 +34,7 @@
           padding-top: 20px;
           margin: 10px 0 0;
           font-size: 15px;
-          border-top: 1px solid black;
+          border-top: 1px solid colors.$BLACK;
         }
       }
     }
@@ -44,7 +44,7 @@
       height: 35px;
       margin: 5px 0 20px;
       color: colors.$WHITE;
-      background-color: blue;
+      background-color: colors.$BLUE;
       border-radius: 5px;
     }
   }

@@ -6,12 +6,20 @@
   margin: 10px 0;
   overflow: scroll;
 
+  :root[color-theme='dark'] & {
+    .bookItem {
+      .bookWrapper {
+        color: colors.$WHITE;
+      }
+    }
+  }
+
   .bookItem {
     padding: 10px;
 
     .image {
       width: 90px;
-      border: 1px solid lightgray;
+      border: 1px solid colors.$GRAYE;
       border-radius: 5px;
     }
 

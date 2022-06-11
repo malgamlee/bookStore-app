@@ -10,12 +10,11 @@ import GNB from 'routes/_shared/GNB'
 import cx from 'classnames'
 import { getSearchListApi } from 'services/bookSearchApi'
 import { inputValue, searchValue } from 'states/inputSearchValue'
-import store from 'store'
 import { useRecoilValue } from 'recoil'
 import { SearchStructure } from 'types/searchStructure'
 import SearchForm from 'components/SearchForm'
-import { Loading } from 'components/Loading'
 import styles from './main.module.scss'
+import RecentSearchList from './RecentSearchList'
 
 const Main = () => {
   const [isSearchListShow, setIsSearchListShow] = useState(false)
@@ -29,32 +28,19 @@ const Main = () => {
     setSearch('')
     setInput('')
   }, [setInput, setSearch])
-  const searchStore = store.get('searchStore')
 
   const { data } = useQuery(
     ['getSearchListApi', search, input],
-    () => getSearchListApi(search).then((res) => res.data),
+    () => getSearchListApi(search, 1).then((res) => res.data),
     {
       enabled: !!search,
     }
   )
-
-  const recentSearchList = searchStore.map((item: string, idx: number) => {
-    const key = `${idx}_${item}`
-    return (
-      <li key={key} className={cx(styles.recentItem)}>
-        <Link to={`bookdetail/${item}`} className={cx(styles.recentItemTitle)}>
-          {item}
-        </Link>
-      </li>
-    )
-  })
-
   const searchList =
     data &&
     data.documents.map((item: SearchStructure) => (
       <li className={styles.searchItem} key={item.isbn}>
-        <Link to={`bookdetail/${item.publisher} ${item.title}`}>
+        <Link to={`bookdetail/${item.publisher} ${item.title}`} className={styles.searchItemLink}>
           <span className={styles.bookTitle}>{item.title}</span>
           <span className={styles.bookAuthors}>{item.authors}</span>
         </Link>
@@ -75,21 +61,9 @@ const Main = () => {
       <div className={cx(styles.mobileSearch, { [styles.isShow]: isSearchListShow })}>
         <SearchForm isPopup setIsSearchListShow={setIsSearchListShow} />
         <div className={cx(styles.searchList, styles.isExist)}>
-          {input && data ? (
-            <ul className={styles.searchValueList}>{searchList}</ul>
-          ) : (
-            <div className={styles.recentSearchList}>
-              <p>최근 검색어 목록</p>
-              {searchStore.length > 0 ? (
-                <ul className={styles.recentSearch}>{recentSearchList}</ul>
-              ) : (
-                <div className={styles.noRecentSearch}>최근 저장된 검색어가 없습니다.</div>
-              )}
-            </div>
-          )}
+          {input && data ? <ul className={styles.searchValueList}>{searchList}</ul> : <RecentSearchList />}
         </div>
       </div>
-      <Loading />
     </div>
   )
 }

@@ -43,7 +43,7 @@ const SearchForm = ({ isPopup, setIsSearchListShow }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    navigate(`bookdetail/${input}`)
+    navigate(`searchresult/${input}`)
     setInput('')
     let searchStoreArray = store.get('searchStore')
     const tmpArray = searchStoreArray.filter((item: string) => item !== input)

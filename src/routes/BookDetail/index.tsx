@@ -13,6 +13,7 @@ import { inputValue, searchValue } from 'states/inputSearchValue'
 
 import TopNavBar from 'components/TopNavBar'
 import NoDataPage from 'components/NoDataPage'
+import Loading from 'components/Loading'
 
 import ButtonWrap from './ButtonWrap'
 import BookList from 'components/BookList'
@@ -33,7 +34,7 @@ const BookDetail = () => {
 
   const { data, isLoading } = useQuery(
     ['getSearchListApi', paramValue],
-    () => getSearchListApi(paramValue).then((res) => res.data),
+    () => getSearchListApi(paramValue, 1).then((res) => res.data),
     {
       enabled: !!paramValue,
     }
@@ -69,6 +70,12 @@ const BookDetail = () => {
     else setLikeStore(store.get(value))
   }
 
+  const loading = isLoading ? (
+    <Loading />
+  ) : (
+    <NoDataPage type='announcement' noDataInfo={`검색하신 '${paramValue}'에 대한 정보가 없습니다.`} />
+  )
+
   useEffect(() => {
     if (data === undefined) return
     const checkLike = likeStore.filter((item: { isbn: string }) => item.isbn === data.documents[0].isbn)
@@ -101,19 +108,20 @@ const BookDetail = () => {
               {data.documents[0].contents} ...<a href={data.documents[0].url}>더보기</a>
             </div>
             <div className={styles.otherTitle}>저자의 다른 도서</div>
-            <BookList author={data.documents[0].authors} title={data.documents[0].title} />
+            <BookList search={data.documents[0].authors} title={data.documents[0].title} next={false} />
           </div>
           <div className={styles.buttonWrap}>
             <ButtonWrap
               handleClickBtn={handleClickBtn}
               isInLike={isInLike}
               isInCart={isInCart}
-              price={thousandReExp(data.documents[0].sale_price)}
+              salePrice={data.documents[0].sale_price}
+              price={data.documents[0].price}
             />
           </div>
         </div>
       ) : (
-        <NoDataPage type='announcement' noDataInfo={`검색하신 '${paramValue}'에 대한 정보가 없습니다.`} />
+        <div className={styles.loadingIcon}>{loading}</div>
       )}
     </div>
   )

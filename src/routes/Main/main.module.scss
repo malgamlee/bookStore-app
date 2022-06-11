@@ -5,9 +5,16 @@
   width: 100%;
   padding: 0 0 24px;
 
+  :root[color-theme='dark'] & {
+    .mainWrapper {
+      color: colors.$WHITE;
+    }
+  }
+
   .mainWrapper {
     width: 100%;
     padding: 5px 12px 0;
+    font-size: 13px;
     border-radius: 15px 15px 0 0;
   }
 
@@ -19,6 +26,22 @@
     width: 100%;
     padding: 10px;
     background-color: colors.$WHITE;
+
+    :root[color-theme='dark'] & {
+      background-color: colors.$GRAY2;
+
+      .searchList {
+        background-color: colors.$GRAY2;
+
+        .searchValueList {
+          .searchItem {
+            .bookTitle {
+              color: colors.$WHITE;
+            }
+          }
+        }
+      }
+    }
 
     .searchList {
       position: absolute;
@@ -37,51 +60,33 @@
           padding: 0 10px;
           line-height: 40px;
 
-          .bookTitle {
-            margin-right: 10px;
-            color: colors.$BLACK;
-          }
+          .searchItemLink {
+            display: flex;
 
-          .bookAuthors {
-            font-size: 12px;
-            color: colors.$GRAYA;
+            .bookTitle {
+              display: block;
+              width: 85%;
+              margin-right: 10px;
+              overflow: hidden;
+              font-size: 14px;
+              color: colors.$BLACK;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .bookAuthors {
+              width: 15%;
+              overflow: hidden;
+              font-size: 12px;
+              color: colors.$GRAYA;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
           }
         }
 
         :hover {
           background-color: lightblue;
-        }
-      }
-
-      .recentSearchList {
-        p {
-          padding: 10px;
-          font-size: 12px;
-          color: colors.$GRAY6;
-        }
-
-        .noRecentSearch {
-          margin-top: 20px;
-          color: colors.$GRAYA;
-          text-align: center;
-        }
-
-        .recentSearch {
-          // padding: 10px;
-
-          .recentItem {
-            height: 40px;
-            padding: 0 10px;
-            line-height: 40px;
-
-            .recentItemTitle {
-              color: colors.$BLACK;
-            }
-          }
-
-          .recentItem:hover {
-            background-color: lightblue;
-          }
         }
       }
     }

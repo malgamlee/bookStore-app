@@ -9,7 +9,17 @@
   font-size: 14px;
   line-height: 50px;
   background-color: colors.$WHITE;
-  // border-bottom: 1px solid black;
+
+  :root[color-theme='dark'] & {
+    color: colors.$WHITE;
+    background-color: colors.$GRAY2;
+
+    .backBtn {
+      .icon {
+        color: colors.$WHITE;
+      }
+    }
+  }
 
   .backBtn {
     height: 40px;

@@ -4,6 +4,17 @@
   position: relative;
   background-color: white;
 
+  :root[color-theme='dark'] & {
+    .formWrapper {
+      background-color: colors.$GRAY2;
+
+      .cancelBtn {
+        color: colors.$WHITE;
+        background-color: colors.$GRAY2;
+      }
+    }
+  }
+
   .formWrapper {
     display: flex;
     background-color: colors.$WHITE;
@@ -19,6 +30,7 @@
         width: 90%;
         height: 30px;
         padding-left: 10px;
+        font-size: 14px;
         background-color: colors.$GRAYE;
       }
 

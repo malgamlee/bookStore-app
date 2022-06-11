@@ -1,11 +1,24 @@
 import styles from './loading.module.scss'
 
-export const Loading = () => {
+const Loading = () => {
   return (
-    <div className={styles.ldsFacebook}>
-      <div />
-      <div />
-      <div />
+    <div>
+      <div className={styles.ldsDefault}>
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
     </div>
   )
 }
+
+export default Loading

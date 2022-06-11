@@ -6,6 +6,7 @@ import store from 'store'
 import { SearchStructure } from 'types/searchStructure'
 import thousandReExp from 'utils/thousandReExp'
 import { inputValue, searchValue } from 'states/inputSearchValue'
+import cx from 'classnames'
 
 interface Props {
   item: SearchStructure
@@ -40,23 +41,33 @@ const ItemList = ({ item, type }: Props) => {
     }
   }
   return (
-    <li className={styles.item} key={item.isbn}>
-      <img className={styles.image} src={item.thumbnail} alt={`${item.title}_img`} />
-      <div className={styles.content}>
-        <div className={styles.bookWrap}>
-          <div className={styles.bookTitle}>{item.title}</div>
-          <div className={styles.bookAuthor}>{item.authors}</div>
-          <div className={styles.bookPrice}>{thousandReExp(item.price)}원</div>
-        </div>
-        <div className={styles.buttonWrap}>
-          <button type='button' className={styles.deleteBtn} data-value={item.isbn} onClick={handleClick}>
-            삭제
-          </button>
-          <button type='button' className={styles.buyBtn} data-value={item.isbn} onClick={handleClick}>
-            구매
-          </button>
+    <li className={styles.itemWrapper} key={item.isbn}>
+      <div className={styles.item}>
+        <img className={styles.image} src={item.thumbnail} alt={`${item.title}_img`} />
+        <div className={styles.content}>
+          <div className={styles.bookWrap}>
+            <div className={styles.bookTitle}>{item.title}</div>
+            <div className={styles.bookAuthor}>{item.authors}</div>
+            <div className={cx(styles.bookPrice, { [styles.isSoldout]: item.sale_price === -1 })}>
+              {thousandReExp(item.sale_price === -1 ? item.price : item.sale_price)}원
+            </div>
+          </div>
+          <div className={styles.buttonWrap}>
+            <button type='button' className={styles.deleteBtn} data-value={item.isbn} onClick={handleClick}>
+              삭제
+            </button>
+            <button
+              type='button'
+              className={cx(styles.buyBtn, { [styles.isSoldout]: item.sale_price === -1 })}
+              data-value={item.isbn}
+              onClick={handleClick}
+            >
+              {item.sale_price === -1 ? '품절' : '구매'}
+            </button>
+          </div>
         </div>
       </div>
+      {item.sale_price === -1 && <p className={styles.soldoutMsg}>품절된 상품입니다.</p>}
     </li>
   )
 }

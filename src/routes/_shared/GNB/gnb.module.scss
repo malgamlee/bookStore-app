@@ -12,6 +12,10 @@
   .title {
     font-size: 15px;
     font-weight: 700;
+
+    :root[color-theme='dark'] & {
+      color: colors.$WHITE;
+    }
   }
 
   .button {
@@ -23,6 +27,10 @@
       padding: 15px 5px;
       line-height: 50px;
       color: colors.$BLACK;
+
+      :root[color-theme='dark'] & {
+        color: colors.$WHITE;
+      }
     }
 
     .svg:hover {
@@ -36,8 +44,8 @@
       width: 15px;
       height: 15px;
       font-size: 5px;
-      line-height: 18px;
-      background-color: red;
+      line-height: 15px;
+      background-color: colors.$RED;
       border-radius: 10px;
     }
   }

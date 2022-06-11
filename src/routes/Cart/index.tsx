@@ -11,9 +11,11 @@ import NoDataPage from 'components/NoDataPage'
 const Cart = () => {
   const storeData = store.get('cartStore')
   const cartStoreData = useRecoilValue(cartStoreState)
+  const countBooks = cartStoreData.filter((book: SearchStructure) => book.sale_price !== -1)
 
   const price = storeData
-    .map((item: SearchStructure) => item.price)
+    .filter((book: SearchStructure) => book.sale_price !== -1)
+    .map((item: SearchStructure) => item.sale_price)
     .reduce((prev: number, curr: number) => prev + curr, 0)
 
   const postPackage = (allPrice: number) => {
@@ -35,7 +37,7 @@ const Cart = () => {
             <ul className={styles.priceList}>
               <li className={styles.priceItem}>
                 <dt>총 상품 수</dt>
-                <dd>{cartStoreData.length}개</dd>
+                <dd>{countBooks.length}개</dd>
               </li>
               <li className={styles.priceItem}>
                 <dt>총 상품 금액</dt>

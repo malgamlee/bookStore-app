@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoil } from 'hooks/state'
 import store from 'store'
 import styles from './bookDetail.module.scss'
@@ -27,6 +27,7 @@ const BookDetail = () => {
   const [likeStore, setLikeStore] = useRecoil(likeStoreState)
   const [, setSearch] = useRecoil(searchValue)
   const [, setInput] = useRecoil(inputValue)
+  const navigate = useNavigate()
 
   useEffect(() => {
     setSearch('')
@@ -77,6 +78,10 @@ const BookDetail = () => {
     <NoDataPage type='announcement' noDataInfo={`검색하신 '${paramValue}'에 대한 정보가 없습니다.`} />
   )
 
+  const clickMoreBooks = () => {
+    navigate(`../searchresult/${data.documents[0].authors}`)
+  }
+
   useEffect(() => {
     if (data === undefined) return
     const checkLike = likeStore.filter((item: { isbn: string }) => item.isbn === data.documents[0].isbn)
@@ -116,7 +121,12 @@ const BookDetail = () => {
             <div className={styles.explain}>
               {data.documents[0].contents} ...<a href={data.documents[0].url}>더보기</a>
             </div>
-            <div className={styles.otherTitle}>저자의 다른 도서</div>
+            <div className={styles.otherTitle}>
+              저자의 다른 도서
+              <button type='button' onClick={clickMoreBooks}>
+                + 더보기
+              </button>
+            </div>
             <BookList search={data.documents[0].authors} title={data.documents[0].title} next={false} />
           </div>
           <div className={styles.buttonWrap}>

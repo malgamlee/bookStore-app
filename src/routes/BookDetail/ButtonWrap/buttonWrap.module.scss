@@ -7,19 +7,9 @@
   height: 60px;
   padding: 10px;
   margin: 10px;
-  background-color: #ffffff;
+  background-color: colors.$GRAYE;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 15%) 0 5px 15px;
-
-  :root[color-theme='dark'] & {
-    background-color: colors.$GRAYE;
-
-    .buttons {
-      .smallBtn {
-        border: 1px solid colors.$GRAYA;
-      }
-    }
-  }
+  box-shadow: rgba(60, 64, 67, 30%) 0 1px 2px 0, rgba(60, 64, 67, 15%) 0 1px 3px 1px;
 
   .price {
     width: 100%;
@@ -40,7 +30,7 @@
       width: 40px;
       height: 40px;
       margin-right: 10px;
-      border: 1px solid colors.$GRAYE;
+      border: 1px solid colors.$GRAYA;
       border-radius: 5px;
       transition: all 0.2s ease-in;
 
@@ -51,7 +41,7 @@
     }
 
     :hover {
-      color: colors.$GRAYA;
+      color: rgba(colors.$RED, 30%);
 
       .icon {
         width: 30px;

@@ -7,6 +7,8 @@ import { SearchStructure } from 'types/searchStructure'
 import thousandReExp from 'utils/thousandReExp'
 import { inputValue, searchValue } from 'states/inputSearchValue'
 import cx from 'classnames'
+import noImage from 'assets/images/noImage.png'
+import { Link } from 'react-router-dom'
 
 interface Props {
   item: SearchStructure
@@ -40,10 +42,17 @@ const ItemList = ({ item, type }: Props) => {
       }
     }
   }
+
   return (
     <li className={styles.itemWrapper} key={item.isbn}>
       <div className={styles.item}>
-        <img className={styles.image} src={item.thumbnail} alt={`${item.title}_img`} />
+        <Link to={`bookdetail/${item.publisher} ${item.title}`} className={cx(styles.recentItemTitle)}>
+          {item.thumbnail === '' ? (
+            <img className={styles.image} src={noImage} alt={item.thumbnail} />
+          ) : (
+            <img className={styles.image} src={item.thumbnail} alt={`${item.title}_img`} />
+          )}
+        </Link>
         <div className={styles.content}>
           <div className={styles.bookWrap}>
             <div className={styles.bookTitle}>{item.title}</div>

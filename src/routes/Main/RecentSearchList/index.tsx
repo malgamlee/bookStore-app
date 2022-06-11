@@ -9,7 +9,7 @@ const RecentSearchList = () => {
     const key = `${idx}_${item}`
     return (
       <li key={key} className={cx(styles.recentItem)}>
-        <Link to={`bookdetail/${item}`} className={cx(styles.recentItemTitle)}>
+        <Link to={`searchresult/${item}`} className={cx(styles.recentItemTitle)}>
           {item}
         </Link>
       </li>

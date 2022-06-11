@@ -4,6 +4,8 @@ import { uniqBy } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getSearchListApi } from 'services/bookSearchApi'
+import noImage from 'assets/images/noImage.png'
+
 import styles from './bookList.module.scss'
 
 interface Props {
@@ -82,7 +84,11 @@ const BookList = ({ search, title, next }: Props) => {
       .map((item: Items) => (
         <li key={item.isbn} className={styles.item}>
           <Link to={`../bookdetail/${item.publisher} ${item.title}`}>
-            <img className={styles.bookImg} src={item.thumbnail} alt={`${item.title} book cover`} />
+            {item.thumbnail === '' ? (
+              <img className={styles.bookImg} src={noImage} alt={item.thumbnail} />
+            ) : (
+              <img className={styles.bookImg} src={item.thumbnail} alt={`${item.title}_img`} />
+            )}
             <div className={styles.bookTitle}>{item.title}</div>
           </Link>
         </li>

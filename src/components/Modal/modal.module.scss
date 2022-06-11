@@ -1,0 +1,52 @@
+@use '/src/styles/constants/colors';
+
+.modalDiv {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 360px;
+  height: 100%;
+  background-color: rgba(colors.$BLACK, 30%);
+  backdrop-filter: blur(2px);
+
+  .modal {
+    position: absolute;
+    top: 35%;
+    left: 8%;
+    z-index: 100;
+    width: 300px;
+    height: 150px;
+    padding: 40px 15px;
+    background-color: colors.$WHITE;
+    border: 1px solid colors.$GRAYD;
+    border-radius: 10px;
+
+    p {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .buttonWrapper {
+      float: right;
+
+      .cancelBtn {
+        width: 50px;
+        height: 50px;
+      }
+
+      .okBtn {
+        width: 50px;
+        height: 50px;
+        color: colors.$RED;
+      }
+    }
+  }
+}
+
+.isShow {
+  display: block;
+}

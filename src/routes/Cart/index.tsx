@@ -33,29 +33,31 @@ const Cart = () => {
               return <ItemList key={key} item={item} type='cartStore' />
             })}
           </ul>
-          <div className={styles.allPrice}>
-            <ul className={styles.priceList}>
-              <li className={styles.priceItem}>
-                <dt>총 상품 수</dt>
-                <dd>{countBooks.length}개</dd>
-              </li>
-              <li className={styles.priceItem}>
-                <dt>총 상품 금액</dt>
-                <dd>{thousandReExp(price)}원</dd>
-              </li>
-              <li className={styles.priceItem}>
-                <dt>총 배송비</dt>
-                <dd>{thousandReExp(postPackage(price))}원</dd>
-              </li>
-              <li className={styles.priceItem}>
-                <dt>총 결제 예상 금액</dt>
-                <dd>{thousandReExp(price + postPackage(price))}원</dd>
-              </li>
-            </ul>
-            <button type='button' className={styles.allBuyBtn}>
-              주문하기
-            </button>
-          </div>
+          {price !== 0 && (
+            <div className={styles.allPrice}>
+              <ul className={styles.priceList}>
+                <li className={styles.priceItem}>
+                  <dt>총 상품 수</dt>
+                  <dd>{countBooks.length}개</dd>
+                </li>
+                <li className={styles.priceItem}>
+                  <dt>총 상품 금액</dt>
+                  <dd>{thousandReExp(price)}원</dd>
+                </li>
+                <li className={styles.priceItem}>
+                  <dt>총 배송비</dt>
+                  <dd>{thousandReExp(postPackage(price))}원</dd>
+                </li>
+                <li className={styles.priceItem}>
+                  <dt>총 결제 예상 금액</dt>
+                  <dd>{thousandReExp(price + postPackage(price))}원</dd>
+                </li>
+              </ul>
+              <button type='button' className={styles.allBuyBtn}>
+                주문하기
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <NoDataPage type='cart' noDataInfo='장바구니가 비었습니다.' />

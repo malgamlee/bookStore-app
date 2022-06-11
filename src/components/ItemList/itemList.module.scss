@@ -7,6 +7,7 @@
     display: flex;
     height: 100%;
     padding: 15px 12px;
+    color: colors.$BLACK;
 
     .image {
       width: 70px;
@@ -54,7 +55,7 @@
           height: 25px;
           font-size: 12px;
           background-color: colors.$WHITE;
-          border: 1px solid colors.$GRAYE;
+          border: 1px solid colors.$GRAYA;
           border-radius: 5px;
         }
 

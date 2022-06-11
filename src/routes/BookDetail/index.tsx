@@ -7,7 +7,6 @@ import styles from './bookDetail.module.scss'
 
 import { getSearchListApi } from 'services/bookSearchApi'
 import { SearchStructure } from 'types/searchStructure'
-import thousandReExp from 'utils/thousandReExp'
 import { cartStoreState, likeStoreState } from 'states/storeState'
 import { inputValue, searchValue } from 'states/inputSearchValue'
 
@@ -17,6 +16,8 @@ import Loading from 'components/Loading'
 
 import ButtonWrap from './ButtonWrap'
 import BookList from 'components/BookList'
+
+import noImage from 'assets/images/noImage.png'
 
 const BookDetail = () => {
   const { paramValue } = useParams()
@@ -96,7 +97,15 @@ const BookDetail = () => {
       {data && data.documents.length > 0 ? (
         <div className={styles.detailContent}>
           <div className={styles.bookImage}>
-            <img className={styles.bookImg} src={data.documents[0].thumbnail} alt={`${data.documents[0].title}_img`} />
+            {data.documents[0].thumbnail === '' ? (
+              <img className={styles.bookImg} src={noImage} alt={data.documents[0].thumbnail} />
+            ) : (
+              <img
+                className={styles.bookImg}
+                src={data.documents[0].thumbnail}
+                alt={`${data.documents[0].title}_img`}
+              />
+            )}
           </div>
           <div className={styles.bookContents}>
             <div className={styles.bookTitle}>{data.documents[0].title}</div>

@@ -1,12 +1,10 @@
 import styles from './cart.module.scss'
 import store from 'store'
-import TopNavBar from 'components/TopNavBar'
+import { TopNavBar, ItemList, NoDataPage } from 'components'
 import { useRecoilValue } from 'hooks/state'
 import { cartStoreState } from 'states/storeState'
-import ItemList from 'components/ItemList'
 import thousandReExp from 'utils/thousandReExp'
 import { SearchStructure } from 'types/searchStructure'
-import NoDataPage from 'components/NoDataPage'
 
 const Cart = () => {
   const storeData = store.get('cartStore')

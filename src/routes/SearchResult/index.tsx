@@ -1,5 +1,4 @@
-import { BookList } from 'components'
-import TopNavBar from 'components/TopNavBar'
+import { BookList, TopNavBar } from 'components'
 import { useParams } from 'react-router-dom'
 import styles from './searchResult.module.scss'
 

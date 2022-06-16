@@ -1,14 +1,11 @@
 import styles from './wishList.module.scss'
-import TopNavBar from 'components/TopNavBar'
+import { TopNavBar, ItemList, SearchForm, NoDataPage } from 'components'
 import { useRecoilValue } from 'hooks/state'
 import { likeStoreState } from 'states/storeState'
 import { SearchStructure } from 'types/searchStructure'
-import ItemList from 'components/ItemList'
-import SearchForm from 'components/SearchForm'
 import { useEffect, useState } from 'react'
 import { fuzzyFilter } from 'utils/fuzzystring'
 import { searchValue } from 'states/inputSearchValue'
-import NoDataPage from 'components/NoDataPage'
 
 const WishList = () => {
   const likeStoreData = useRecoilValue(likeStoreState)

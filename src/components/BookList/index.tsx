@@ -1,5 +1,4 @@
-import Loading from 'components/Loading'
-import NoDataPage from 'components/NoDataPage'
+import { NoDataPage, Loading } from 'components'
 import { uniqBy } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'

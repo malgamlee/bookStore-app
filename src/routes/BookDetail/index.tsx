@@ -10,13 +10,9 @@ import { SearchStructure } from 'types/searchStructure'
 import { cartStoreState, likeStoreState } from 'states/storeState'
 import { inputValue, searchValue } from 'states/inputSearchValue'
 
-import TopNavBar from 'components/TopNavBar'
-import NoDataPage from 'components/NoDataPage'
-import Loading from 'components/Loading'
+import { NoDataPage, Loading, TopNavBar, BookList } from 'components'
 
 import ButtonWrap from './ButtonWrap'
-import BookList from 'components/BookList'
-
 import noImage from 'assets/images/noImage.png'
 
 const BookDetail = () => {

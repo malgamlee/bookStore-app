@@ -5,4 +5,4 @@ import NoDataPage from './NoDataPage'
 import SearchForm from './SearchForm'
 import TopNavBar from './TopNavBar'
 
-export { BookList, ItemList }
+export { BookList, ItemList, Loading, NoDataPage, SearchForm, TopNavBar }

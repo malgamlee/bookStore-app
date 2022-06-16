@@ -1,5 +1,5 @@
 import styles from './myPage.module.scss'
-import TopNavBar from 'components/TopNavBar'
+import { TopNavBar } from 'components'
 import { PersonIcon } from 'assets/svgs'
 import { userInfoState } from 'states/userInfo'
 import { useRecoilValue } from 'recoil'

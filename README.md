@@ -3,6 +3,16 @@
 ## 배포 링크
 [🔗 링크](https://book-store-app-xi.vercel.app/)
 
+## Dependencies
+<span>
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat-square&logo=ReactQuery&logoColor=white"/>
+<img src="https://img.shields.io/badge/store.js-FEC111?style=flat-square"/>
+<img src="https://img.shields.io/badge/Recoil-006600?style=flat-square"/>
+<img src="https://img.shields.io/badge/ReactSlick-E4637C?style=flat-square"/>
+</span>
+
 ## 구현 상세 설명
 
 ### 메인 화면
@@ -62,6 +72,12 @@
 - 카트 모양의 장바구니 버튼을 클릭하면 `localstorage`를 이용해 `장바구니 목록`에 저장됩니다.
 - 상단의 nav의 장바구니 버튼 옆에 수가 증가하게 됩니다.
 
+![infinity](https://user-images.githubusercontent.com/88325253/174005145-e09d9834-0b8e-49b8-be3d-990864de094f.gif)
+
+- 저자의 다른 도서를 확인할 수 있습니다.
+- `더보기` 버튼을 클릭할 경우, 검색 결과 페이지로 이동하며 로딩이 발생하며 `무한 스크롤`을 통해 결과가 출력됩니다.
+
+
 ### 장바구니 페이지
 
 <span>
@@ -89,3 +105,28 @@
 - 삭제 버튼을 클릭하면 목록에서 사라집니다.
 - 품절 상품일 경우, `품절된 상품입니다.` 라는 문구가 등장합니다.
 - 목록이 비었을 경우, `좋아요를 누른 항목이 없습니다.` 라는 화면이 출력됩니다.
+
+### 마이페이지 
+
+#### 저장 목록 전체 삭제
+
+<span>
+<img src="https://user-images.githubusercontent.com/88325253/174005600-239d8d57-5578-4e62-9079-309b78e119d5.gif" width="30%" height="30%"/>
+<img src="https://user-images.githubusercontent.com/88325253/174005639-05568025-8198-435e-b774-22e07f105786.gif" width="30%" height="30%"/>
+<img src="https://user-images.githubusercontent.com/88325253/174005647-3f5bf5b6-e7db-4509-951d-144688966fef.gif" width="30%" height="30%"/>
+</span>
+
+- `localStorage`에 저장되었던 장바구니, 좋아요, 검색 기록 데이터를 모두 삭제할 수 있습니다.
+
+#### 다크 모드
+
+<span>
+<img src="https://user-images.githubusercontent.com/88325253/174006282-48eb694f-c259-4304-b07e-b1e838e8c0de.gif" width="30%" height="30%"/>
+<img src="https://user-images.githubusercontent.com/88325253/174006310-3ca85e63-223a-4335-bfca-4c2e99f875e2.gif" width="30%" height="30%"/>
+</span>
+
+- 마이페이지 하단의 다크모드 토글을 클릭하면 화면 색이 변경된다.
+- 모든 페이지의 화면이 다크모드에 맞게 적용된 모습을 확인할 수 있다.
+
+## 회고
+초반에 제작을 할 때, 전체 화면을 이용해 구현하기엔 넣을 기능이나 데이터가 부족하다고 생각하여 모바일 화면으로 구현했습니다.

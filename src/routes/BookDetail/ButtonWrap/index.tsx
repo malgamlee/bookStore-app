@@ -2,7 +2,6 @@ import { HeartIcon, CartIcon } from 'assets/svgs'
 import styles from './buttonWrap.module.scss'
 import cx from 'classnames'
 import { MouseEventHandler } from 'react'
-import ThousandReExp from 'utils/thousandReExp'
 
 interface Props {
   handleClickBtn: MouseEventHandler<HTMLButtonElement>
@@ -16,7 +15,7 @@ const ButtonWrap = ({ handleClickBtn, isInLike, isInCart, price, salePrice }: Pr
   return (
     <div className={styles.buttonWrapper}>
       <div className={cx(styles.price, { [styles.soldout]: salePrice < 0 })}>
-        {salePrice === -1 ? `${ThousandReExp(price)} 원` : `${ThousandReExp(salePrice)} 원`}
+        {salePrice === -1 ? `${price.toLocaleString('ko-KR')} 원` : `${salePrice.toLocaleString('ko-KR')} 원`}
       </div>
       <div className={styles.buttons}>
         <button

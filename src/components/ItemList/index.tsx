@@ -4,7 +4,6 @@ import { useRecoil } from 'hooks/state'
 import { cartStoreState, likeStoreState } from 'states/storeState'
 import store from 'store'
 import { SearchStructure } from 'types/searchStructure'
-import thousandReExp from 'utils/thousandReExp'
 import { inputValue, searchValue } from 'states/inputSearchValue'
 import cx from 'classnames'
 import noImage from 'assets/images/noImage.png'
@@ -58,7 +57,7 @@ const ItemList = ({ item, type }: Props) => {
             <div className={styles.bookTitle}>{item.title}</div>
             <div className={styles.bookAuthor}>{item.authors}</div>
             <div className={cx(styles.bookPrice, { [styles.isSoldout]: item.sale_price === -1 })}>
-              {thousandReExp(item.sale_price === -1 ? item.price : item.sale_price)}원
+              {(item.sale_price === -1 ? item.price : item.sale_price).toLocaleString('ko-KR')}원
             </div>
           </div>
           <div className={styles.buttonWrap}>

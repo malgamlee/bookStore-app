@@ -3,7 +3,6 @@ import store from 'store'
 import { TopNavBar, ItemList, NoDataPage } from 'components'
 import { useRecoilValue } from 'hooks/state'
 import { cartStoreState } from 'states/storeState'
-import thousandReExp from 'utils/thousandReExp'
 import { SearchStructure } from 'types/searchStructure'
 
 const Cart = () => {
@@ -40,15 +39,15 @@ const Cart = () => {
                 </li>
                 <li className={styles.priceItem}>
                   <dt>총 상품 금액</dt>
-                  <dd>{thousandReExp(price)}원</dd>
+                  <dd>{price.toLocaleString('ko-KR')}원</dd>
                 </li>
                 <li className={styles.priceItem}>
                   <dt>총 배송비</dt>
-                  <dd>{thousandReExp(postPackage(price))}원</dd>
+                  <dd>{postPackage(price).toLocaleString('ko-KR')}원</dd>
                 </li>
                 <li className={styles.priceItem}>
                   <dt>총 결제 예상 금액</dt>
-                  <dd>{thousandReExp(price + postPackage(price))}원</dd>
+                  <dd>{(price + postPackage(price)).toLocaleString('ko-KR')}원</dd>
                 </li>
               </ul>
               <button type='button' className={styles.allBuyBtn}>
